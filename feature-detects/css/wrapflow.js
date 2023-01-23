@@ -12,7 +12,7 @@
   }]
 }
 !*/
-define(['Modernizr', 'prefixed', 'docElement', 'createElement', 'isSVG'], function(Modernizr, prefixed, docElement, createElement, isSVG) {
+define(['Modernizr', 'setCss', 'prefixed', 'docElement', 'createElement', 'isSVG'], function(Modernizr, setCss, prefixed, docElement, createElement, isSVG) {
   Modernizr.addTest('wrapflow', function() {
     var prefixedProperty = prefixed('wrapFlow');
     if (!prefixedProperty || isSVG) {
@@ -31,7 +31,7 @@ define(['Modernizr', 'prefixed', 'docElement', 'createElement', 'isSVG'], functi
        We use the "wrap-flow: end" property to test the actual behavior. (https://drafts.csswg.org/css-exclusions-1/#wrap-flow-property)
        The wrap-flow property is applied to the exclusion area what has a 50px left offset and a 100px width.
        If the wrap-flow property is working correctly then the content should start after the exclusion area, so the content's left offset should be 150px. */
-    exclusion.style.cssText = 'position: absolute; left: 50px; width: 100px; height: 20px;' + wrapFlowProperty + ':end;';
+    setCss(exclusion, 'position: absolute; left: 50px; width: 100px; height: 20px;' + wrapFlowProperty + ':end;');
     content.innerText = 'X';
 
     container.appendChild(exclusion);

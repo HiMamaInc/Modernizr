@@ -40,7 +40,7 @@ Modernizr.inputtypes.url
 Modernizr.inputtypes.week
 ```
 */
-define(['Modernizr', 'inputElem', 'docElement'], function(Modernizr, inputElem, docElement) {
+define(['Modernizr', 'setCss', 'inputElem', 'docElement'], function(Modernizr, setCss, inputElem, docElement) {
   // Run through HTML5's new input types to see if the UA understands any.
   //   This is put behind the tests runloop because it doesn't return a
   //   true/false like all the other tests; instead, it returns an object
@@ -64,7 +64,7 @@ define(['Modernizr', 'inputElem', 'docElement'], function(Modernizr, inputElem, 
       if (bool) {
 
         inputElem.value = smile;
-        inputElem.style.cssText = 'position:absolute;visibility:hidden;';
+        setCss(inputElem, 'position:absolute;visibility:hidden;');
 
         if (/^range$/.test(inputElemType) && inputElem.style.WebkitAppearance !== undefined) {
 

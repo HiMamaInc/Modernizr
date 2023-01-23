@@ -21,10 +21,10 @@
   }]
 }
 !*/
-define(['Modernizr', 'createElement'], function(Modernizr, createElement) {
+define(['Modernizr', 'setCss', 'createElement'], function(Modernizr, setCss, createElement) {
   Modernizr.addTest('csspointerevents', function() {
-    var style = createElement('a').style;
-    style.cssText = 'pointer-events:auto';
-    return style.pointerEvents === 'auto';
+    var elem = createElement('a');
+    setCss(elem, 'pointer-events:auto');
+    return elem.style.pointerEvents === 'auto';
   });
 });

@@ -27,7 +27,7 @@
   }]
 }
 !*/
-define(['Modernizr', 'prefixes', 'createElement', 'testAllProps', 'addTest'], function(Modernizr, prefixes, createElement, testAllProps, addTest) {
+define(['Modernizr', 'setCss', 'prefixes', 'createElement', 'testAllProps', 'addTest'], function(Modernizr, setCss, prefixes, createElement, testAllProps, addTest) {
 
   Modernizr.addAsyncTest(function() {
     var waitTime = 300;
@@ -46,7 +46,6 @@ define(['Modernizr', 'prefixes', 'createElement', 'testAllProps', 'addTest'], fu
            * these have to be appended to document.body, otherwise some browsers can give false negative */
           var div = createElement('div');
           var span = createElement('span');
-          var divStyle = div.style;
           var spanHeight = 0;
           var spanWidth = 0;
           var result = false;
@@ -61,13 +60,13 @@ define(['Modernizr', 'prefixes', 'createElement', 'testAllProps', 'addTest'], fu
           document.body.insertBefore(div, firstChild);
 
           /* get size of unhyphenated text */
-          divStyle.cssText = 'position:absolute;top:0;left:0;width:5em;text-align:justify;text-justify:newspaper;';
+          setCss(div, 'position:absolute;top:0;left:0;width:5em;text-align:justify;text-justify:newspaper;');
           spanHeight = span.offsetHeight;
           spanWidth = span.offsetWidth;
 
           /* compare size with hyphenated text */
-          divStyle.cssText = 'position:absolute;top:0;left:0;width:5em;text-align:justify;text-justify:newspaper;' +
-            prefixes.join('hyphens:auto; ');
+          setCss(div, 'position:absolute;top:0;left:0;width:5em;text-align:justify;text-justify:newspaper;' +
+            prefixes.join('hyphens:auto; '));
 
           /* results */
           result = (span.offsetHeight !== spanHeight || span.offsetWidth !== spanWidth);
@@ -89,14 +88,13 @@ define(['Modernizr', 'prefixes', 'createElement', 'testAllProps', 'addTest'], fu
            * these have to be appended to document.body, otherwise some browsers can give false negative */
           var div = createElement('div');
           var span = createElement('span');
-          var divStyle = div.style;
           var spanSize = 0;
           var result = false;
           var result1 = false;
           var result2 = false;
           var firstChild = document.body.firstElementChild || document.body.firstChild;
 
-          divStyle.cssText = 'position:absolute;top:0;left:0;overflow:visible;width:1.25em;';
+          setCss(div, 'position:absolute;top:0;left:0;overflow:visible;width:1.25em;');
           div.appendChild(span);
           document.body.insertBefore(div, firstChild);
 
