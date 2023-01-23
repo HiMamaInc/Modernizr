@@ -12,7 +12,7 @@
   }]
 }
 !*/
-define(['Modernizr', 'createElement', 'docElement', 'isSVG', 'prefixed'], function(Modernizr, createElement, docElement, isSVG, prefixed) {
+define(['Modernizr', 'setCss', 'createElement', 'docElement', 'isSVG', 'prefixed'], function(Modernizr, setCss, createElement, docElement, isSVG, prefixed) {
   // We start with a CSS parser test then we check page geometry to see if it's affected by regions
   // Later we might be able to retire the second part, as WebKit builds with the false positives die out
 
@@ -48,8 +48,8 @@ define(['Modernizr', 'createElement', 'docElement', 'isSVG', 'prefixed'], functi
        content, the second will be the region. To be able to distinguish between the two,
        we'll give the region a particular padding */
     content.innerText = 'M';
-    container.style.cssText = 'top: 150px; left: 150px; padding: 0px;';
-    region.style.cssText = 'width: 50px; height: 50px; padding: 42px;';
+    setCss(container, 'top: 150px; left: 150px; padding: 0px;');
+    setCss(region, 'width: 50px; height: 50px; padding: 42px;');
 
     region.style[flowFromProperty] = flowName;
     container.appendChild(content);

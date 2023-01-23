@@ -12,13 +12,13 @@
   }]
 }
 !*/
-define(['Modernizr', 'createElement', 'prefixes', 'testAllProps', 'test/css/supports'], function(Modernizr, createElement, prefixes, testAllProps) {
+define(['Modernizr', 'setCss', 'createElement', 'prefixes', 'testAllProps', 'test/css/supports'], function(Modernizr, setCss, createElement, prefixes, testAllProps) {
   Modernizr.addTest('cssfilters', function() {
     if (Modernizr.supports) {
       return testAllProps('filter', 'blur(2px)');
     } else {
       var el = createElement('a');
-      el.style.cssText = prefixes.join('filter:blur(2px); ');
+      setCss(el, prefixes.join('filter:blur(2px); '));
       // https://github.com/Modernizr/Modernizr/issues/615
       // documentMode is needed for false positives in oldIE, please see issue above
       return !!el.style.length && ((document.documentMode === undefined || document.documentMode > 9));

@@ -12,10 +12,10 @@
   }]
 }
 !*/
-define(['Modernizr', 'createElement', 'prefixes'], function(Modernizr, createElement, prefixes) {
+define(['Modernizr', 'setCss', 'createElement', 'prefixes'], function(Modernizr, setCss, createElement, prefixes) {
   Modernizr.addTest('cubicbezierrange', function() {
     var el = createElement('a');
-    el.style.cssText = prefixes.join('transition-timing-function:cubic-bezier(1,0,0,1.1); ');
+    setCss(el, prefixes.join('transition-timing-function:cubic-bezier(1,0,0,1.1); '));
     return !!el.style.length;
   });
 });
